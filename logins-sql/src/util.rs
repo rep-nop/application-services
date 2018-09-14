@@ -89,7 +89,8 @@ pub fn system_time_ms_i64(t: time::SystemTime) -> i64 {
     duration_ms_i64(t.duration_since(time::UNIX_EPOCH).unwrap_or_default())
 }
 
-// Unfortunately, there's not a better way to turn on logging in tests AFAICT
+// Unfortunately, there's not a better way to turn on logging in tests AFAICT (and it doesn't
+// even work for tests in the `tests` dir...).
 #[cfg(test)]
 pub(crate) fn init_test_logging() {
     use env_logger;
