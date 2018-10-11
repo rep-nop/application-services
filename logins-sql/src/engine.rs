@@ -5,7 +5,7 @@ use login::Login;
 use error::*;
 use sync::{self, Sync15StorageClient, Sync15StorageClientInit, GlobalState, KeyBundle};
 use db::LoginDb;
-use std::path::Path;
+use std::{panic, path::Path};
 use serde_json;
 use rusqlite;
 
@@ -24,6 +24,10 @@ pub struct PasswordEngine {
     sync: Option<SyncInfo>,
     db: LoginDb,
 }
+
+// TODO: determine if this is actually correct
+impl panic::UnwindSafe for PasswordEngine {}
+impl panic::RefUnwindSafe for PasswordEngine {}
 
 impl PasswordEngine {
 
